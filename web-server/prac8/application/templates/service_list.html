@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.service_list_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<style>
+    table {
+        text-align: center;
+    }
+</style>
+<body>
+<h1>{{localizator.service_list_page_header}}</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>{{localizator.service_title}}</th>
+        <th>{{localizator.service_desc}}</th>
+        <th>{{localizator.service_cost}}</th>
+        <th>{{localizator.actions}}</th>
+    </tr>
+    {% for service in services %}
+        <tr>
+            <td>{{service.id}}</td>
+            <td>{{service.title}}</td>
+            <td>{{service.desc}}</td>
+            <td>{{service.price}}</td>
+            <td>
+                {% if request.user.id %}
+                    <a href="{% url 'service_update' service.id %}">{{localizator.edit}}</a>
+                    <a href="{% url 'service_delete' service.id %}">{{localizator.delete}}</a>
+                {% else %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    {% if request.user.id %}
+    <tr>
+        <td colspan="5">
+            <a href='{% url "service_create" %}'><button>{{localizator.add_service}}</button></a>
+        </td>
+    </tr>
+    {% endif %}
+</table>
+{% if request.user.id %}
+<a href='{% url "user_list" %}'><button>{{localizator.to_user_list}}</button></a>
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+{% endif %}
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+</body>
+</html>

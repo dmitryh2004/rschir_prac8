@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: ./web-server
+    command: python prac8/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/prac8
+    ports:
+      - '8000:8000'

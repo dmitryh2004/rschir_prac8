@@ -1,0 +1,20 @@
+<style>
+  body {
+    {% if theme %}
+    background-color: #222;
+    color: #ddd;
+    {% endif %}
+    font-size: calc(16px * {{scale}});
+  }
+
+  {% if theme %}
+  table { border-color: #fff; }
+  a { color: #ff0; }
+  a:visited { color: #880; }
+  a:hover { color: #fff; }
+  {% else %}
+  a { color: #00f; }
+  a:visited { color: #808; }
+  a:hover { color: #888; }
+  {% endif %}
+</style>

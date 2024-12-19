@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.user_delete_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<body>
+<h1>{{localizator.user_delete_page_header}}</h1>
+{% if error %}
+<p>{{error}}</p>
+{% else %}
+<form method='post'>
+    {% csrf_token %}
+    <p>{{localizator.user_delete_are_you_sure}} {{name}} (id={{id}})?</p>
+    <button type='submit'>{{localizator.delete}}</button>
+</form>
+{% endif %}
+<a href="{% url 'user_list' %}"><button>{{localizator.back}}</button></a>
+</body>
+</html>

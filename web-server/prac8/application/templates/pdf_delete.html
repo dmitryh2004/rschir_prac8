@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.download_pdf_page_title}}</title>
+</head>
+<body>
+{% if error %}
+    <p>{{error}}</p>
+{% endif %}
+<a href="{% url 'pdf_list' request.user.id %}"><button>{{localizator.back}}</button></a>
+</body>
+</html>

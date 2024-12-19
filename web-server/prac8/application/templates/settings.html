@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{localizator.settings_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+    <style>
+        .scale-value {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{localizator.settings_page_header}}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            <input type="checkbox" name="theme" value="1"{% if session.theme == "1" %} checked{% endif %}> {{localizator.dark_theme}}
+        </label><br><br>
+
+        <label for="language">{{localizator.select_language}}</label>
+        <select name="language" id="language">
+            <option value="ru" {% if session.language == "ru" %}selected{% endif %}>Русский</option>
+            <option value="en" {% if session.language == "en" %}selected{% endif %}>English</option>
+        </select><br><br>
+
+        <label for="scale">{{localizator.text_scale}}</label>
+        <input type="range" name="scale" id="scale" min="0.5" max="2.0" step="0.1" value="{{session.scale}}" oninput="updateScaleValue(this.value)">
+        <span class="scale-value" id="scaleValue">1.0</span><br><br>
+
+        <button type="submit">{{localizator.save}}</button>
+    </form>
+    <a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+    <script>
+        function updateScaleValue(value) {
+            document.getElementById('scaleValue').textContent = (Math.round(value * 100) + "%");
+        }
+
+        // Инициализация значения при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            updateScaleValue(document.getElementById('scale').value);
+        });
+    </script>
+</body>
+</html>

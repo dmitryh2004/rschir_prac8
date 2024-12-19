@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Автосервис "АвтоГермес"</title>
+</head>
+<style>
+    div#admin_area {
+        margin-top: 200%;
+    }
+</style>
+<body>
+    <h1>"АвтоГермес"</h1>
+    <p>Просто автосервис</p>
+    <a href="{% url 'about' %}"><button>О нас</button></a>
+    <a href="{% url 'service_list' %}"><button>Список услуг</button></a>
+    <div id="admin_area">
+        <p>Несанкционированный доступ к администрированию запрещен.</p>
+        <a href="{% url 'menu' %}"><button>Администрирование</button></a>
+    </div>
+</body>
+</body>
+</html>

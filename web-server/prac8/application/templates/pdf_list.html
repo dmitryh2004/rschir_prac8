@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.download_pdf_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<body>
+<h1>{{localizator.download_pdf_page_header}}</h1>
+<p>
+  {% if files %}
+  <ul>
+      {% for file in files %}
+          <li>{{ file }} <a href="{% url 'pdf_delete' request.user.id file %}">{{localizator.delete}}</a></li>
+      {% endfor %}
+  </ul>
+  {% else %}
+  {{localizator.no_pdfs}}
+  {% endif %}
+</p>
+<a href="{% url 'pdf_upload' request.user.id %}"><button>{{localizator.upload_pdf}}</button></a>
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+</body>
+</html>

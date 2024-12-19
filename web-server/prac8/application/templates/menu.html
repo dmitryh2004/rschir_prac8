@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.admin_menu_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<body>
+<h1>{{localizator.admin_menu_page_header}}</h1>
+<ul>
+    <li><a href="{% url 'user_list' %}">{{localizator.to_user_list}}</a></li>
+    <li><a href="{% url 'service_list' %}">{{localizator.to_service_list}}</a></li>
+    <li><a href="{% url 'settings' %}">{{localizator.settings}}</a></li>
+    <li><a href="{% url 'pdf_upload' user.id %}">{{localizator.upload_pdf}}</a></li>
+    <li><a href="{% url 'pdf_list' user.id %}">{{localizator.download_pdf}}</a></li>
+    <li><a href="{% url 'fixtures_generate' %}">{{localizator.generate_fixtures}}</a></li>
+    <li><a href="{% url 'fixtures_stats' %}">{{localizator.show_stats}}</a></li>
+    <li><a href="{% url 'logout' %}">{{localizator.logout}}</a></li>
+    <li><a href="{% url 'main' %}">{{localizator.to_mainpage}}</a></li>
+</ul>
+</body>
+</html>

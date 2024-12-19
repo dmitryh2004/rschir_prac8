@@ -1,0 +1,50 @@
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.show_stats_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<style>
+    table {
+        text-align: center;
+    }
+</style>
+<body>
+<h1>{{localizator.show_stats_page_header}}</h1>
+
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>{{localizator.customer_name}}</th>
+        <th>{{localizator.service_title}}</th>
+        <th>{{localizator.amount}}</th>
+        <th>{{localizator.comment}}</th>
+    </tr>
+    {% for entry in entries %}
+        <tr>
+            <td>{{entry.id}}</td>
+            <td>{{entry.customer_name}}</td>
+            <td>{{entry.service_title}}</td>
+            <td>{{entry.amount}}</td>
+            <td>{{entry.comment}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h2>{{localizator.stats_graph1_name}}</h2>
+<p><img src="{{graph1.url}}" style="width: 512px; height: auto;"></p>
+
+<h2>{{localizator.stats_graph2_name}}</h2>
+<p><img src="{{graph2.url}}" style="width: 512px; height: auto;"></p>
+
+<h2>{{localizator.stats_graph3_name}}</h2>
+<p><img src="{{graph3.url}}" style="width: 512px; height: auto;"></p>
+
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+</body>
+</html>

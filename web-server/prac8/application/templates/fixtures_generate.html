@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.generate_fixtures}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<body>
+<h1>{{localizator.generate_fixtures}}</h1>
+{% if error %}
+<p>{{error}}</p>
+{% else %}
+{% if erased %}{{localizator.fixtures_erased}}{% endif %}<br>
+75 {{localizator.fixtures_generated}}<br>
+{% endif %}
+<a href="{% url 'menu' %}"><button>{{localizator.to_admin_menu}}</button></a>
+</body>
+</html>

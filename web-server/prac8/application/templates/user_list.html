@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.user_list_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<style>
+    table {
+        text-align: center;
+    }
+</style>
+<body>
+<h1>{{localizator.user_list_page_header}}</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>{{localizator.username}}</th>
+        <th>{{localizator.actions}}</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>
+                {% if user.id != request.user.id %}
+                    <a href="{% url 'user_update' user.id %}">{{localizator.edit}}</a>
+                    <a href="{% url 'user_delete' user.id %}">{{localizator.delete}}</a>
+                {% else %}
+                    <p>{{localizator.its_you}}</p>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="3">
+            <a href='{% url "user_create" %}'><button>{{localizator.add_user}}</button></a>
+        </td>
+    </tr>
+</table>
+<a href='{% url "service_list" %}'><button>{{localizator.to_service_list}}</button></a>
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{localizator.upload_pdf_page_title}}</title>
+    {% include "style.html" with theme=session.theme scale=session.scale %}
+</head>
+<body>
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+<h1>{{localizator.upload_pdf_page_header}}</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="pdf_file" required><br>
+    <button type="submit">{{localizator.upload}}</button>
+</form>
+<br>
+<a href="{% url 'pdf_list' request.user.id %}"><button>{{localizator.download_pdf}}</button></a>
+<a href='{% url "menu" %}'><button>{{localizator.to_admin_menu}}</button></a>
+<a href="{% url "main" %}"><button>{{localizator.to_mainpage}}</button></a>
+</body>
+</html>
